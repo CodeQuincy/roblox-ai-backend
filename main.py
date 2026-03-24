@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from groq import Groq
 
@@ -8,6 +9,8 @@ API_KEYS = [
     os.environ.get("GROQ_KEY_2"),
     os.environ.get("GROQ_KEY_3"),
 ]
+
+API_KEYS = [key for key in API_KEYS if key]
 
 current_key_index = 0
 
@@ -63,63 +66,3 @@ def chat():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
-```
-
-Scroll down and click **"Commit new file"**
-
----
-
-## Step 2 — Create Second File
-
-Click **"Add file" → "Create new file"** again
-
-**Name it `requirements.txt`** and paste:
-```
-flask
-groq
-gunicorn
-```
-
-Click **"Commit new file"**
-
----
-
-## Step 3 — Go to Render
-
-Your repo should now look like this:
-```
-your-repo/
-├── main.py
-└── requirements.txt
-```
-
-1. Go to [render.com](https://render.com)
-2. Sign up with your **GitHub account** (easiest)
-3. Click **"New +"** → **"Web Service"**
-4. Click **"Connect"** next to your repository
-5. Fill in these settings:
-
-| Setting | Value |
-|---|---|
-| Name | anything you want |
-| Region | closest to you |
-| Branch | main |
-| Runtime | Python 3 |
-| Build Command | `pip install -r requirements.txt` |
-| Start Command | `gunicorn main:app --bind 0.0.0.0:3000` |
-| Instance Type | **Free** |
-
-6. Click **"Create Web Service"**
-
----
-
-## Step 4 — Get Your URL
-
-Render will take about **2-3 minutes** to deploy. Once it says **"Live"** you'll see your URL at the top:
-```
-https://your-app-name.onrender.com
-```
-
-Your Roblox backend URL will be:
-```
-https://your-app-name.onrender.com/chat
