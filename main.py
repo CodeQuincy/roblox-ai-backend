@@ -4,9 +4,9 @@ from groq import Groq
 app = Flask(__name__)
 
 API_KEYS = [
-    "your_groq_key_1",
-    "your_groq_key_2",
-    "your_groq_key_3",
+    os.environ.get("GROQ_KEY_1"),
+    os.environ.get("GROQ_KEY_2"),
+    os.environ.get("GROQ_KEY_3"),
 ]
 
 current_key_index = 0
